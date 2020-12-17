@@ -2,6 +2,7 @@ package com.umeng.soexample.ui.home;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import com.umeng.soexample.base.BaseFragment;
 import com.umeng.soexample.base.home.IHome;
 import com.umeng.soexample.model.HomeData;
 import com.umeng.soexample.presenter.HomePresenter;
+import com.umeng.soexample.ui.home.details.DetailsActivity;
 import com.umeng.soexample.utils.TxtUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
@@ -182,6 +184,12 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
             txtChannel.setGravity(Gravity.CENTER);
             channel.setLayoutParams(params);
             layout_tab.addView(channel);
+            channel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(), DetailsActivity.class));
+                }
+            });
         }
 
     }
