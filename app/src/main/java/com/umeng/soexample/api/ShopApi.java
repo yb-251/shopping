@@ -1,5 +1,6 @@
 package com.umeng.soexample.api;
 
+import com.umeng.soexample.model.DetailsGoodData;
 import com.umeng.soexample.model.HomeData;
 import com.umeng.soexample.ui.home.details.DetailsTabBean;
 
@@ -13,11 +14,10 @@ public interface ShopApi {
     @GET("api/index")
     Flowable<HomeData> getHomeData();
 
-    //商场 详情页 ?id=1005000 分类
-    @GET("api/catalog/index/pages/category/category")
-    Flowable<DetailsTabBean> getTabData(@Query("id") int id);
+    @GET("api/catalog/index")
+    Flowable<DetailsTabBean> getTabData();
 
     //商场 详情页 ?id=1005000 分类数据
-    @GET("http://cdplay.cn/api/goods/list")
-    Flowable<SPListDetailsBean> getListData(@Query("categoryId")int cid);
+    @GET("api/goods/list")
+    Flowable<DetailsGoodData> getListData(@Query("categoryId")int cid);
 }

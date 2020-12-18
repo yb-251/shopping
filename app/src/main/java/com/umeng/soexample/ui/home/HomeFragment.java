@@ -187,7 +187,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
             channel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(getActivity(), DetailsActivity.class));
+                    Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                    intent.putExtra("name",item.getName());
+                    intent.putExtra("cid",item.getUrl());
+                    startActivity(intent);
                 }
             });
         }
