@@ -9,4 +9,19 @@
     <string name="newGoogs">周一周四·新品首发</string>
     <string name="hotgoods">人气推荐</string>
     <string name="topic">专题精选</string>
+    <string name="title_hotgood_all">综合</string>
+    <string name="title_hotgood_price">价格</string>
+    <string name="title_hotgood_sort">分类</string>
+
+    <string name="title_car_specs">请选择规格数量</string>
+    <string name="title_car_assess">评价($)</string>
+    <string name="title_car_lookall">查看全部</string>
+
+
+    <string name="tips_error_goodid">错误的商品id</string>
+    <string name="tv3">30天无忧退货</string>
+    <string name="tv4">48小时快速退款</string>
+    <string name="tv5">满88元免邮费</string>
+
+
 </resources>

@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,12 +19,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.umeng.soexample.R;
+import com.umeng.soexample.base.BaseAdapter;
 import com.umeng.soexample.base.BaseFragment;
 import com.umeng.soexample.base.home.IHome;
 import com.umeng.soexample.model.HomeData;
 import com.umeng.soexample.presenter.HomePresenter;
-import com.umeng.soexample.ui.home.details.DetailsActivity;
-import com.umeng.soexample.utils.TxtUtils;
+import com.umeng.soexample.ui.adapter.BrandAdapter;
+import com.umeng.soexample.ui.adapter.CategoryListAdapter;
+import com.umeng.soexample.ui.adapter.HotGoodsAdapter;
+import com.umeng.soexample.ui.adapter.NewGoodsAdapter;
+import com.umeng.soexample.ui.adapter.TopicAdapter;
+import com.umeng.soexample.ui.home.activity.CarActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -35,7 +39,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.View {
+public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.View, View.OnClickListener {
 
 
     private Banner banner;
@@ -84,6 +88,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
         tv_brand_title = getActivity().findViewById(R.id.tv_brand_title);
         rlv_brand = getActivity().findViewById(R.id.rlv_brand);
         tv_newgood_title = getActivity().findViewById(R.id.tv_newgood_title);
+        tv_hotgoods_title = getActivity().findViewById(R.id.tv_hotgoods_title);
         rlv_newgood = getActivity().findViewById(R.id.rlv_newgood);
         rlv_hotgoods = getActivity().findViewById(R.id.rlv_hotgoods);
         rlv_topic = getActivity().findViewById(R.id.rlv_topic);
@@ -112,9 +117,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
         topicListBean = new ArrayList<>();
         topicAdapter = new TopicAdapter(getActivity(), topicListBean);
         rlv_topic.setAdapter(topicAdapter);
-    }
 
-    @Override
+        tv_brand_title.setOnClickListener(this);
+        tv_newgood_title.setOnClickListener(this);
+    }    @Override
     protected void initData() {
         presenter.getHomeData();
     }
@@ -141,10 +147,18 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
             recy_category.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             tv_category_title.setText(list.get(i).getName());
             CategoryListAdapter categoryListAdapter = new CategoryListAdapter(getActivity(), listBean);
-
             recy_category.setAdapter(categoryListAdapter);
-
             rlv_category.addView(inflate);
+
+            categoryListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+                @Override
+                public void onClick(int pos) {
+                    Intent intent = new Intent(getActivity(), CarActivity.class);
+                    intent.putExtra("goodid",Integer.parseInt(listBean.get(pos).getId()));
+                    getActivity().startActivity(intent);
+                }
+            });
+
         }
     }
 
@@ -184,12 +198,13 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
             txtChannel.setGravity(Gravity.CENTER);
             channel.setLayoutParams(params);
             layout_tab.addView(channel);
+            channel.setTag(item);
             channel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                    intent.putExtra("name",item.getName());
-                    intent.putExtra("cid",item.getUrl());
+                    int curId = ((HomeData.DataBean.ChannelBean)v.getTag()).getCategoryid();
+                    Intent intent = new Intent(mContext,ChannelListActivity.class);
+                    intent.putExtra("categoryid",curId);
                     startActivity(intent);
                 }
             });
@@ -211,5 +226,17 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
                         }).start();
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_brand_title:
+                startActivity(new Intent(getActivity(), BrandDetailsActivity.class));
+                break;
+            case R.id.tv_newgood_title:
+                startActivity(new Intent(getActivity(), NewGoodsActivity.class));
+                break;
+        }
     }
 }

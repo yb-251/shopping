@@ -40,9 +40,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
     implementation 'com.jakewharton:butterknife:10.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
-    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
     implementation 'com.github.kinkoi:materialsearchview:1.4.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.7'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
@@ -60,4 +60,7 @@ dependencies {
     implementation 'cn.carbs.android:ExpandableTextView:1.0.0'
 //    implementation 'com.github.SherlockGougou:BigImageViewPager:v4_6.1.1'
     implementation 'jp.wasabeef:glide-transformations:4.1.0'//高斯模糊
+
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
 }
