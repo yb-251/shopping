@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,10 +38,14 @@ import com.umeng.soexample.ui.adapter.GoodRcyProblemAdapter;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cc.shinichi.library.ImagePreview;
 
 public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.View {
 
@@ -125,6 +130,7 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
     private String page;
     private String size;
     private long goods_sn;
+    private ProgressBar ProgressBar;
 
     @Override
     protected int getLayout() {
@@ -148,10 +154,12 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
             int id = getIntent().getIntExtra("goodid", 0);
             if (id > 0) {
                 presenter.getGoodDetail(id);
+                presenter.resultGoodSeeSeeReturn(String.valueOf(id),page,size);
             } else {
                 tips(getString(R.string.tips_error_goodid));
             }
         }
+
         goodsNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -264,10 +272,27 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
      * @param webData
      */
     private void initVebView(String webData) {
+        getHtmlImgs(webData);
         String content = h5.replace("word", webData);
         Log.i("TAG", content);
         webView.loadDataWithBaseURL("about:blank", content, "text/html", "utf-8", null);
         webView.setWebViewClient(new WebViewClient());
+    }
+
+    private void getHtmlImgs(String content){
+        String img = "<img[\\s\\S]*?>";
+        Pattern pattern = Pattern.compile(img);
+        Matcher matcher = pattern.matcher(content);
+        List<String> list = new ArrayList<>();
+        while(matcher.find()){
+            String word = matcher.group();
+            int start = word.indexOf("\"")+1;
+            int end = word.indexOf(".jpg");
+            String url = word.substring(start,end);
+            url = url +".jpg";
+            list.add(url);
+        }
+
     }
 
     @Override

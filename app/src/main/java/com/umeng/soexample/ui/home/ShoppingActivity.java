@@ -8,9 +8,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.tabs.TabLayout;
 import com.umeng.soexample.R;
-import com.umeng.soexample.ui.fragment.ClassifyFragment;
+import com.umeng.soexample.ui.fragment.SortFragment;
 import com.umeng.soexample.ui.fragment.MyFragment;
-import com.umeng.soexample.ui.fragment.ShoppingFragment;
+import com.umeng.soexample.ui.shop.ShoppingFragment;
 import com.umeng.soexample.ui.fragment.SubjectFragment;
 
 public class ShoppingActivity extends AppCompatActivity {
@@ -19,7 +19,7 @@ public class ShoppingActivity extends AppCompatActivity {
     private TabLayout tab;
     private HomeFragment homeFragment;
     private SubjectFragment subjectFragment;
-    private ClassifyFragment classifyFragment;
+    private SortFragment sortFragment;
     private ShoppingFragment shoppingFragment;
     private MyFragment myFragment;
 
@@ -37,17 +37,17 @@ public class ShoppingActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         homeFragment = new HomeFragment();
         subjectFragment = new SubjectFragment();
-        classifyFragment = new ClassifyFragment();
+        sortFragment = new SortFragment();
         shoppingFragment = new ShoppingFragment();
         myFragment = new MyFragment();
         transaction.add(R.id.frame_layout,homeFragment)
                 .add(R.id.frame_layout,subjectFragment)
-                .add(R.id.frame_layout,classifyFragment)
+                .add(R.id.frame_layout, sortFragment)
                 .add(R.id.frame_layout,shoppingFragment)
                 .add(R.id.frame_layout,myFragment)
                 .show(homeFragment)
                 .hide(subjectFragment)
-                .hide(classifyFragment)
+                .hide(sortFragment)
                 .hide(shoppingFragment)
                 .hide(myFragment)
                 .commit();
@@ -66,19 +66,19 @@ public class ShoppingActivity extends AppCompatActivity {
                     case 0:
                         transaction1.show(homeFragment)
                                 .hide(subjectFragment)
-                                .hide(classifyFragment)
+                                .hide(sortFragment)
                                 .hide(shoppingFragment)
                                 .hide(myFragment);
                         break;
                     case 1:
                         transaction1.show(subjectFragment)
                                 .hide(homeFragment)
-                                .hide(classifyFragment)
+                                .hide(sortFragment)
                                 .hide(shoppingFragment)
                                 .hide(myFragment);
                         break;
                     case 2:
-                        transaction1.show(classifyFragment)
+                        transaction1.show(sortFragment)
                                 .hide(homeFragment)
                                 .hide(subjectFragment)
                                 .hide(shoppingFragment)
@@ -88,21 +88,14 @@ public class ShoppingActivity extends AppCompatActivity {
                         transaction1.show(shoppingFragment)
                                 .hide(homeFragment)
                                 .hide(subjectFragment)
-                                .hide(classifyFragment)
+                                .hide(sortFragment)
                                 .hide(myFragment);
                         break;
                     case 4  :
-                        transaction1.show(shoppingFragment)
-                                .hide(homeFragment)
-                                .hide(subjectFragment)
-                                .hide(myFragment)
-                                .hide(classifyFragment);
-                        break;
-                    case 5  :
                         transaction1.show(myFragment)
                                 .hide(homeFragment)
                                 .hide(subjectFragment)
-                                .hide(classifyFragment)
+                                .hide(sortFragment)
                                 .hide(shoppingFragment);
                         break;
                 }

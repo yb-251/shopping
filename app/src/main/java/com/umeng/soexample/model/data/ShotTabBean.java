@@ -1,8 +1,10 @@
-package com.umeng.soexample.ui.home.details;
+package com.umeng.soexample.model.data;
 
 import java.util.List;
 
-public class DetailsTabBean {
+import q.rorbin.verticaltablayout.widget.TabView;
+
+public class ShotTabBean {
 
     /**
      * errno : 0

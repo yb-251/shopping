@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.SortFragment">
+
+    <include layout="@layout/layout_search"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <q.rorbin.verticaltablayout.VerticalTabLayout
+            android:id="@+id/v_tab"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="match_parent"
+            app:indicator_width="@dimen/dp_2"
+            app:tab_height="@dimen/dp_50"
+            app:tab_mode="scrollable" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/img_item_sort"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_120"/>
+                <TextView
+                    android:id="@+id/tv_img"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toTopOf="@id/img_item_sort"
+                    app:layout_constraintBottom_toBottomOf="@id/img_item_sort"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_item"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="@dimen/dp_24"
+                    android:textColor="@color/textColorBlack"
+                    app:layout_constraintTop_toBottomOf="@id/img_item_sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rlv_shot"
+                    android:layout_marginTop="@dimen/dp_16"
+                    app:layout_constraintTop_toBottomOf="@id/tv_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,8 +1,18 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao' // apply plugin 步骤3
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
+
+    greendao {
+        //数据库版本号，升级时修改
+        schemaVersion 1
+        //生成的DAO，DaoMaster和DaoSession的包路径。默认与表实体所在的包路径相同
+        daoPackage 'com.umeng.soexample.ui.shop.db'
+        //生成源文件的路径。默认源文件目录是在build目录中的(build/generated/source/greendao)
+        targetGenDir 'src/main/java'
+    }
+
     defaultConfig {
         applicationId "com.umeng.soexample"
         minSdkVersion 15
@@ -52,13 +62,21 @@ dependencies {
     //  implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
+
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //垂直的tablayout
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
+
     implementation 'com.jaeger.ninegridimageview:library:1.0.2'
     implementation 'com.bm.photoview:library:1.4.1'
 
 //    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'cn.carbs.android:ExpandableTextView:1.0.0'
     implementation 'cn.carbs.android:ExpandableTextView:1.0.0'
-//    implementation 'com.github.SherlockGougou:BigImageViewPager:v4_6.1.1'
+    implementation 'com.github.SherlockGougou:BigImageViewPager:v4_6.1.1'
     implementation 'jp.wasabeef:glide-transformations:4.1.0'//高斯模糊
 
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'

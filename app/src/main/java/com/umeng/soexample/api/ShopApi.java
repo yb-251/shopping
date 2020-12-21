@@ -10,7 +10,8 @@ import com.umeng.soexample.model.data.GoodDetailBean;
 import com.umeng.soexample.model.data.GoodsHotBean;
 import com.umeng.soexample.model.data.HotGoodListBean;
 import com.umeng.soexample.model.data.ShopAllData;
-import com.umeng.soexample.ui.home.details.DetailsTabBean;
+import com.umeng.soexample.model.data.ShotItemData;
+import com.umeng.soexample.model.data.ShotTabBean;
 
 import java.util.Map;
 
@@ -24,9 +25,6 @@ public interface ShopApi {
 
     @GET("api/index")
     Flowable<HomeData> getHomeData();
-
-    @GET("api/catalog/index")
-    Flowable<DetailsTabBean> getTabData();
 
     @GET("goods/category")
     Flowable<CategoryBean> getCategory(@Query("id") int id);
@@ -58,4 +56,10 @@ public interface ShopApi {
     //详情 -- https://cdplay.cn/api/goods/list?categoryId=1005000&page=1&size=100
     @GET("goods/list")
     Flowable<ShopAllData> getShopDataAll(@Query("categoryId") String id, @Query("page") String page, @Query("size") String size);
+
+    @GET("api/catalog/index")
+    Flowable<ShotTabBean> getTabData();
+
+    @GET("api/catalog/current")
+    Flowable<ShotItemData> getShotItemData(@Query("id") int id);
 }
