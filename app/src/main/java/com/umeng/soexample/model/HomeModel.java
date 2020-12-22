@@ -1,7 +1,7 @@
 package com.umeng.soexample.model;
 
 import com.umeng.soexample.base.BaseModel;
-import com.umeng.soexample.base.home.IHome;
+import com.umeng.soexample.interfaces.home.IHome;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.net.CommonSubscriber;
 import com.umeng.soexample.net.HttpManager;

@@ -1,13 +1,11 @@
 package com.umeng.soexample.presenter;
 
 import com.umeng.soexample.base.BasePresenter;
-import com.umeng.soexample.base.home.ICategory;
+import com.umeng.soexample.interfaces.home.ICategory;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.model.CategoryBean;
 import com.umeng.soexample.model.CategoryGoodBean;
 import com.umeng.soexample.model.CategoryModel;
-
-import retrofit2.Callback;
 
 public class CategoryPresenter extends BasePresenter<ICategory.View> implements ICategory.Presenter {
 

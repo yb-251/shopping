@@ -1,7 +1,7 @@
 package com.umeng.soexample.model.shop;
 
 import com.umeng.soexample.base.BaseModel;
-import com.umeng.soexample.base.home.IBrandDetails;
+import com.umeng.soexample.interfaces.home.IBrandDetails;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.model.data.BrandDetailsData;
 import com.umeng.soexample.model.data.BrandDetailsItemData;

@@ -23,5 +23,6 @@
     <string name="tv4">48小时快速退款</string>
     <string name="tv5">满88元免邮费</string>
 
-
+    <string name="text_empty">用户名密码不能为空</string>
+    <string name="text_error">用户名密码错误</string>
 </resources>

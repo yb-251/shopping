@@ -9,14 +9,20 @@ import com.umeng.soexample.model.data.BrandDetailsListData;
 import com.umeng.soexample.model.data.GoodDetailBean;
 import com.umeng.soexample.model.data.GoodsHotBean;
 import com.umeng.soexample.model.data.HotGoodListBean;
+import com.umeng.soexample.model.data.LoginData;
 import com.umeng.soexample.model.data.ShopAllData;
 import com.umeng.soexample.model.data.ShotItemData;
 import com.umeng.soexample.model.data.ShotTabBean;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.Flowable;
+import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -62,4 +68,13 @@ public interface ShopApi {
 
     @GET("api/catalog/current")
     Flowable<ShotItemData> getShotItemData(@Query("id") int id);
+
+    @POST("api/auth/login")
+    @FormUrlEncoded
+    Flowable<LoginData> login(@Field("username") String username, @Field("password") String pw);
+
+    //添加到购物车
+    @POST("api/cart/add")
+    @FormUrlEncoded
+    Flowable<LoginData> addCar(@FieldMap HashMap<String,String> map);
 }

@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseActivity;
-import com.umeng.soexample.base.home.IHotGood;
+import com.umeng.soexample.interfaces.home.IHotGood;
 import com.umeng.soexample.model.data.GoodsHotBean;
 import com.umeng.soexample.model.data.HotGoodListBean;
 import com.umeng.soexample.presenter.HotGoodPresenter;

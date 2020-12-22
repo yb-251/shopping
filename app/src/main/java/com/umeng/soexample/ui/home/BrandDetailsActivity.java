@@ -1,7 +1,6 @@
 package com.umeng.soexample.ui.home;
 
 import android.content.Intent;
-import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseActivity;
-import com.umeng.soexample.base.home.IBrandDetails;
+import com.umeng.soexample.interfaces.home.IBrandDetails;
 import com.umeng.soexample.model.data.BrandDetailsData;
 import com.umeng.soexample.model.data.BrandDetailsItemData;
 import com.umeng.soexample.model.data.BrandDetailsListData;

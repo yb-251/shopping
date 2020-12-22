@@ -1,7 +1,7 @@
 package com.umeng.soexample.model;
 
 import com.umeng.soexample.base.BaseModel;
-import com.umeng.soexample.base.home.IHotGood;
+import com.umeng.soexample.interfaces.home.IHotGood;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.model.data.GoodsHotBean;
 import com.umeng.soexample.model.data.HotGoodListBean;

@@ -19,9 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.umeng.soexample.R;
-import com.umeng.soexample.base.BaseAdapter;
 import com.umeng.soexample.base.BaseFragment;
-import com.umeng.soexample.base.home.IHome;
+import com.umeng.soexample.interfaces.home.IHome;
 import com.umeng.soexample.model.HomeData;
 import com.umeng.soexample.presenter.HomePresenter;
 import com.umeng.soexample.ui.adapter.BrandAdapter;

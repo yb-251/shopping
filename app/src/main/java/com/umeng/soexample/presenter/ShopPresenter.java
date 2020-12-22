@@ -1,7 +1,7 @@
 package com.umeng.soexample.presenter;
 
 import com.umeng.soexample.base.BasePresenter;
-import com.umeng.soexample.base.home.IShop;
+import com.umeng.soexample.interfaces.home.IShop;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.model.ShopModel;
 import com.umeng.soexample.model.data.GoodDetailBean;

@@ -1,4 +1,4 @@
-package com.umeng.soexample.base.home;
+package com.umeng.soexample.interfaces.home;
 
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.interfaces.IBasePresenter;

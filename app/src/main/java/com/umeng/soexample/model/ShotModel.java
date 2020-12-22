@@ -1,7 +1,7 @@
 package com.umeng.soexample.model;
 
 import com.umeng.soexample.base.BaseModel;
-import com.umeng.soexample.base.home.IShot;
+import com.umeng.soexample.interfaces.home.IShot;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.model.data.ShotItemData;
 import com.umeng.soexample.model.data.ShotTabBean;

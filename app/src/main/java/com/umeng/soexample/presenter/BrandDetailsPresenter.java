@@ -1,9 +1,8 @@
 package com.umeng.soexample.presenter;
 
 import com.umeng.soexample.base.BasePresenter;
-import com.umeng.soexample.base.home.IBrandDetails;
+import com.umeng.soexample.interfaces.home.IBrandDetails;
 import com.umeng.soexample.interfaces.CallBack;
-import com.umeng.soexample.interfaces.IBaseView;
 import com.umeng.soexample.model.data.BrandDetailsData;
 import com.umeng.soexample.model.data.BrandDetailsItemData;
 import com.umeng.soexample.model.data.BrandDetailsListData;

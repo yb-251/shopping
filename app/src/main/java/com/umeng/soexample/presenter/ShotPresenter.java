@@ -1,7 +1,7 @@
 package com.umeng.soexample.presenter;
 
 import com.umeng.soexample.base.BasePresenter;
-import com.umeng.soexample.base.home.IShot;
+import com.umeng.soexample.interfaces.home.IShot;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.model.ShotModel;
 import com.umeng.soexample.model.data.ShotItemData;

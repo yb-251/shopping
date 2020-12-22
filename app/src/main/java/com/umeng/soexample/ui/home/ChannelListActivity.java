@@ -1,7 +1,6 @@
 package com.umeng.soexample.ui.home;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.tabs.TabLayout;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseActivity;
-import com.umeng.soexample.base.home.ICategory;
+import com.umeng.soexample.interfaces.home.ICategory;
 import com.umeng.soexample.model.CategoryBean;
 import com.umeng.soexample.model.CategoryGoodBean;
 import com.umeng.soexample.presenter.CategoryPresenter;
@@ -21,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ChannelListActivity extends BaseActivity<ICategory.Presenter> implements ICategory.View {

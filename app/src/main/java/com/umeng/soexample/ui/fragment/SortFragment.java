@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseFragment;
-import com.umeng.soexample.base.home.IShot;
+import com.umeng.soexample.interfaces.home.IShot;
 import com.umeng.soexample.model.data.ShotItemData;
 import com.umeng.soexample.model.data.ShotTabBean;
 import com.umeng.soexample.presenter.ShotPresenter;
@@ -20,7 +20,6 @@ import com.umeng.soexample.ui.sort.SortAdapter;
 
 import java.util.List;
 
-import butterknife.BindView;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
 import q.rorbin.verticaltablayout.adapter.TabAdapter;
 import q.rorbin.verticaltablayout.widget.ITabView;

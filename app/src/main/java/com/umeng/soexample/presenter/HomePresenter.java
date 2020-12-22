@@ -1,7 +1,7 @@
 package com.umeng.soexample.presenter;
 
 import com.umeng.soexample.base.BasePresenter;
-import com.umeng.soexample.base.home.IHome;
+import com.umeng.soexample.interfaces.home.IHome;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.model.HomeData;
 import com.umeng.soexample.model.HomeModel;

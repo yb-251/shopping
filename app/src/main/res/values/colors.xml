@@ -9,4 +9,7 @@
     <color name="textGray">#9B9B9B</color>
     <color name="textColorBlack">#302F2F</color>
     <color name="white">#FFFFFF</color>
+    <color name="line_color">#ECECEC</color>
+    <color name="font_color_light">#999999</color>
+    <color name="grey9494">#f39494</color>
 </resources>

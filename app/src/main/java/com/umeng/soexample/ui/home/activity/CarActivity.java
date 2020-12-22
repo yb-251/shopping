@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseActivity;
-import com.umeng.soexample.base.home.IShop;
+import com.umeng.soexample.interfaces.home.IShop;
 import com.umeng.soexample.model.data.GoodDetailBean;
 import com.umeng.soexample.model.data.ShopAllData;
 import com.umeng.soexample.presenter.ShopPresenter;
@@ -45,7 +45,6 @@ import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cc.shinichi.library.ImagePreview;
 
 public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.View {
 
