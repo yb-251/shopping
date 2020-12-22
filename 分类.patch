@@ -1,0 +1,15 @@
+Index: app/src/main/java/com/umeng/soexample/ui/fragment/SortFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/umeng/soexample/ui/fragment/SortFragment.java	(revision ab9308674ac406d9171d0a0ee0ba52ddb2d7dfdc)
++++ app/src/main/java/com/umeng/soexample/ui/fragment/SortFragment.java	(date 1608557662527)
+@@ -83,7 +83,6 @@
+                 return null;
+             }
+ 
+-
+             @Override
+             public QTabView.TabIcon getIcon(int position) {
+                 return null;

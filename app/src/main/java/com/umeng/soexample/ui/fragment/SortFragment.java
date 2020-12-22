@@ -83,7 +83,6 @@ public class SortFragment extends BaseFragment<ShotPresenter> implements IShot.V
                 return null;
             }
 
-
             @Override
             public QTabView.TabIcon getIcon(int position) {
                 return null;
