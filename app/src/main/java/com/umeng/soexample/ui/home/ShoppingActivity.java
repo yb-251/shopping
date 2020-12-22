@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.tabs.TabLayout;
 import com.umeng.soexample.R;
 import com.umeng.soexample.ui.fragment.SortFragment;
-import com.umeng.soexample.ui.fragment.MyFragment;
+import com.umeng.soexample.ui.my.MyFragment;
 import com.umeng.soexample.ui.shop.ShoppingFragment;
 import com.umeng.soexample.ui.fragment.SubjectFragment;
 

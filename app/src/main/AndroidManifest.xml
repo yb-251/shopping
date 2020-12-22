@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.home.NewGoodsActivity"></activity>
+        <activity android:name=".ui.my.LoginActivity"></activity>
+        <activity android:name=".ui.home.NewGoodsActivity" />
         <activity android:name=".ui.home.BrandItemDetailsActivity" />
         <activity android:name=".ui.home.BrandDetailsActivity" />
         <activity android:name=".ui.home.ShoppingActivity">
