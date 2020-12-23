@@ -4,7 +4,7 @@ import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.interfaces.IBasePresenter;
 import com.umeng.soexample.interfaces.IBaseView;
 import com.umeng.soexample.interfaces.IModel;
-import com.umeng.soexample.model.data.LoginData;
+import com.umeng.soexample.model.login.LoginData;
 
 public interface ILogin {
     interface View extends IBaseView {

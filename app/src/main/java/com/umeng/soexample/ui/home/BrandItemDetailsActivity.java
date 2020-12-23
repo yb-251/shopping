@@ -9,12 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseActivity;
 import com.umeng.soexample.interfaces.home.IBrandDetails;
-import com.umeng.soexample.model.data.BrandDetailsData;
-import com.umeng.soexample.model.data.BrandDetailsItemData;
-import com.umeng.soexample.model.data.BrandDetailsListData;
-import com.umeng.soexample.presenter.BrandDetailsPresenter;
-import com.umeng.soexample.ui.adapter.BrandItemAdapter;
-import com.umeng.soexample.ui.adapter.BrandListAdapter;
+import com.umeng.soexample.model.home.BrandDetailsData;
+import com.umeng.soexample.model.home.BrandDetailsItemData;
+import com.umeng.soexample.model.home.BrandDetailsListData;
+import com.umeng.soexample.presenter.home.BrandDetailsPresenter;
 
 import java.util.ArrayList;
 import java.util.List;

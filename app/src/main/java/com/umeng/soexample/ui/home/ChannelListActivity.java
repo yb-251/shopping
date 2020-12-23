@@ -11,10 +11,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseActivity;
 import com.umeng.soexample.interfaces.home.ICategory;
-import com.umeng.soexample.model.CategoryBean;
-import com.umeng.soexample.model.CategoryGoodBean;
-import com.umeng.soexample.presenter.CategoryPresenter;
-import com.umeng.soexample.ui.adapter.CategoryGoodAdapter;
+import com.umeng.soexample.model.home.CategoryBean;
+import com.umeng.soexample.model.home.CategoryGoodBean;
+import com.umeng.soexample.presenter.home.CategoryPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,9 +111,7 @@ public class ChannelListActivity extends BaseActivity<ICategory.Presenter> imple
             tabLayout.addTab(tab);
             //通过一个界面传过来的categoryid判断哪个tab选中
             if (currentCategoryId == item.getId()) {
-                for (int i = 0; i < tabs.size(); i++) {
-
-                }
+                tabLayout.getTabAt(item.getParent_id()).select();
             }
         }
         //记录上去页面初始化完成状态

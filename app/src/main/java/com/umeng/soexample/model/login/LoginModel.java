@@ -3,7 +3,6 @@ package com.umeng.soexample.model.login;
 import com.umeng.soexample.base.BaseModel;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.interfaces.login.ILogin;
-import com.umeng.soexample.model.data.LoginData;
 import com.umeng.soexample.net.CommonSubscriber;
 import com.umeng.soexample.net.HttpManager;
 import com.umeng.soexample.utils.RxUtils;

@@ -4,8 +4,8 @@ import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.interfaces.IBasePresenter;
 import com.umeng.soexample.interfaces.IBaseView;
 import com.umeng.soexample.interfaces.IModel;
-import com.umeng.soexample.model.CategoryBean;
-import com.umeng.soexample.model.CategoryGoodBean;
+import com.umeng.soexample.model.home.CategoryBean;
+import com.umeng.soexample.model.home.CategoryGoodBean;
 
 public interface ICategory {
 

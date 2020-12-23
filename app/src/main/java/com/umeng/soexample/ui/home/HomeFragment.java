@@ -21,14 +21,9 @@ import com.bumptech.glide.Glide;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseFragment;
 import com.umeng.soexample.interfaces.home.IHome;
-import com.umeng.soexample.model.HomeData;
-import com.umeng.soexample.presenter.HomePresenter;
-import com.umeng.soexample.ui.adapter.BrandAdapter;
-import com.umeng.soexample.ui.adapter.CategoryListAdapter;
-import com.umeng.soexample.ui.adapter.HotGoodsAdapter;
-import com.umeng.soexample.ui.adapter.NewGoodsAdapter;
-import com.umeng.soexample.ui.adapter.TopicAdapter;
-import com.umeng.soexample.ui.home.activity.CarActivity;
+import com.umeng.soexample.model.home.HomeData;
+import com.umeng.soexample.presenter.home.HomePresenter;
+import com.umeng.soexample.ui.shop.CarActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 

@@ -21,10 +21,9 @@ import com.bumptech.glide.Glide;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseActivity;
 import com.umeng.soexample.interfaces.home.IHotGood;
-import com.umeng.soexample.model.data.GoodsHotBean;
-import com.umeng.soexample.model.data.HotGoodListBean;
-import com.umeng.soexample.presenter.HotGoodPresenter;
-import com.umeng.soexample.ui.adapter.NewGoodsDetailsAdapter;
+import com.umeng.soexample.model.home.GoodsHotBean;
+import com.umeng.soexample.model.home.HotGoodListBean;
+import com.umeng.soexample.presenter.home.HotGoodPresenter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -4,7 +4,7 @@ package com.umeng.soexample.presenter.login;
 import com.umeng.soexample.base.BasePresenter;
 import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.interfaces.login.ILogin;
-import com.umeng.soexample.model.data.LoginData;
+import com.umeng.soexample.model.login.LoginData;
 import com.umeng.soexample.model.login.LoginModel;
 
 public class LoginPresenter extends BasePresenter<ILogin.View> implements ILogin.Presenter {

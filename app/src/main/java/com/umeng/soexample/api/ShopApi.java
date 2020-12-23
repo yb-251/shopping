@@ -1,18 +1,19 @@
 package com.umeng.soexample.api;
 
-import com.umeng.soexample.model.CategoryBean;
-import com.umeng.soexample.model.CategoryGoodBean;
-import com.umeng.soexample.model.HomeData;
-import com.umeng.soexample.model.data.BrandDetailsData;
-import com.umeng.soexample.model.data.BrandDetailsItemData;
-import com.umeng.soexample.model.data.BrandDetailsListData;
-import com.umeng.soexample.model.data.GoodDetailBean;
-import com.umeng.soexample.model.data.GoodsHotBean;
-import com.umeng.soexample.model.data.HotGoodListBean;
-import com.umeng.soexample.model.data.LoginData;
-import com.umeng.soexample.model.data.ShopAllData;
-import com.umeng.soexample.model.data.ShotItemData;
-import com.umeng.soexample.model.data.ShotTabBean;
+import com.umeng.soexample.model.home.CategoryBean;
+import com.umeng.soexample.model.home.CategoryGoodBean;
+import com.umeng.soexample.model.home.HomeData;
+import com.umeng.soexample.model.home.BrandDetailsData;
+import com.umeng.soexample.model.home.BrandDetailsItemData;
+import com.umeng.soexample.model.home.BrandDetailsListData;
+import com.umeng.soexample.model.home.GoodDetailBean;
+import com.umeng.soexample.model.home.GoodsHotBean;
+import com.umeng.soexample.model.home.HotGoodListBean;
+import com.umeng.soexample.model.login.LoginData;
+import com.umeng.soexample.model.shop.ShopAllData;
+import com.umeng.soexample.model.sort.SortItemData;
+import com.umeng.soexample.model.sort.SortTabBean;
+import com.umeng.soexample.model.shop.CarBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,10 +65,10 @@ public interface ShopApi {
     Flowable<ShopAllData> getShopDataAll(@Query("categoryId") String id, @Query("page") String page, @Query("size") String size);
 
     @GET("api/catalog/index")
-    Flowable<ShotTabBean> getTabData();
+    Flowable<SortTabBean> getTabData();
 
     @GET("api/catalog/current")
-    Flowable<ShotItemData> getShotItemData(@Query("id") int id);
+    Flowable<SortItemData> getShotItemData(@Query("id") int id);
 
     @POST("api/auth/login")
     @FormUrlEncoded
@@ -77,4 +78,8 @@ public interface ShopApi {
     @POST("api/cart/add")
     @FormUrlEncoded
     Flowable<LoginData> addCar(@FieldMap HashMap<String,String> map);
+
+    //购物车列表
+    @GET("api/cart/index")
+    Flowable<CarBean> getCarList();
 }

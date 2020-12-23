@@ -4,9 +4,9 @@ import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.interfaces.IBasePresenter;
 import com.umeng.soexample.interfaces.IBaseView;
 import com.umeng.soexample.interfaces.IModel;
-import com.umeng.soexample.model.data.BrandDetailsData;
-import com.umeng.soexample.model.data.BrandDetailsItemData;
-import com.umeng.soexample.model.data.BrandDetailsListData;
+import com.umeng.soexample.model.home.BrandDetailsData;
+import com.umeng.soexample.model.home.BrandDetailsItemData;
+import com.umeng.soexample.model.home.BrandDetailsListData;
 
 public interface IBrandDetails {
 

@@ -71,6 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="配件"
                     android:textSize="@dimen/sp_18"
+                    android:textColor="@color/textColorBlack"
                     android:layout_marginTop="@dimen/dp_20"
                     android:layout_gravity="center"/>
                 <TextView

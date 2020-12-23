@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import com.umeng.soexample.interfaces.IBasePresenter;
 import com.umeng.soexample.interfaces.IBaseView;
+import com.umeng.soexample.ui.my.LoginActivity;
+import com.umeng.soexample.utils.ActivityManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -65,6 +67,13 @@ public abstract class BaseFragment<P extends IBasePresenter> extends Fragment im
     @Override
     public void tips(String tips) {
 
+    }
+
+    /**
+     * 跳转登录
+     */
+    protected void gotoLogin(){
+        ActivityManager.startFragmentForResult(this,100, LoginActivity.class);
     }
 
     @Override

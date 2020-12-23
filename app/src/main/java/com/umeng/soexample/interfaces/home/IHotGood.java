@@ -4,8 +4,8 @@ import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.interfaces.IBasePresenter;
 import com.umeng.soexample.interfaces.IBaseView;
 import com.umeng.soexample.interfaces.IModel;
-import com.umeng.soexample.model.data.GoodsHotBean;
-import com.umeng.soexample.model.data.HotGoodListBean;
+import com.umeng.soexample.model.home.GoodsHotBean;
+import com.umeng.soexample.model.home.HotGoodListBean;
 
 import java.util.Map;
 

@@ -1,7 +1,6 @@
 package com.umeng.soexample.ui.my;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,13 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseActivity;
 import com.umeng.soexample.interfaces.login.ILogin;
-import com.umeng.soexample.model.data.LoginData;
+import com.umeng.soexample.model.login.LoginData;
 import com.umeng.soexample.presenter.login.LoginPresenter;
 import com.umeng.soexample.utils.SpUtils;
 
