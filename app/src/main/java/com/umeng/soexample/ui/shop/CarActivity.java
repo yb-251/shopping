@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
@@ -30,23 +32,28 @@ import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseActivity;
 import com.umeng.soexample.interfaces.shop.IShop;
 import com.umeng.soexample.model.home.GoodDetailBean;
+import com.umeng.soexample.model.shop.AddCarBean;
 import com.umeng.soexample.model.shop.ShopAllData;
 import com.umeng.soexample.presenter.shop.ShopPresenter;
 import com.umeng.soexample.ui.home.EcoShopAdapter;
 import com.umeng.soexample.ui.home.GoodAttributeAdapter;
 import com.umeng.soexample.ui.home.GoodRcyProblemAdapter;
+import com.umeng.soexample.ui.my.LoginActivity;
+import com.umeng.soexample.utils.SpUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.View {
+public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.View, View.OnClickListener {
 
     @BindView(R.id.webView)
     WebView webView;
@@ -62,17 +69,13 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
     FrameLayout layoutCollect;
     @BindView(R.id.img_car)
     ImageView imgCar;
-    @BindView(R.id.txt_number)
     TextView txtNumber;
-    @BindView(R.id.layout_car)
     FrameLayout layoutCar;
     @BindView(R.id.txt_buy)
     TextView txtBuy;
-    @BindView(R.id.txt_addCar)
     TextView txtAddCar;
     @BindView(R.id.layout_shop)
     ConstraintLayout layoutShop;
-    @BindView(R.id.goods_number)
     ConstraintLayout goodsNumber;
     @BindView(R.id.tv_return)
     TextView tvReturn;
@@ -105,6 +108,10 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
     @BindView(R.id.good_rcy_problem)
     RecyclerView goodRcyProblem;
     private ImageView img_ppopup;
+
+    GoodDetailBean goodDetailBean;
+    public static final int RECOMMEND_CAR = 1000; //打开购物车的指令
+    int buyNumber=1; //购买的数量
 
 
     private String h5 = "<html>\n" +
@@ -143,7 +150,65 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
 
     @Override
     protected void initView() {
+        txtNumber = findViewById(R.id.txt_number);
+        layoutCar = findViewById(R.id.layout_car);
+        txtAddCar = findViewById(R.id.txt_addCar);
+        goodsNumber = findViewById(R.id.goods_number);
 
+        layoutCollect.setOnClickListener(this);
+        layoutCar.setOnClickListener(this);
+        txtBuy.setOnClickListener(this);
+        txtAddCar.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(!TextUtils.isEmpty(SpUtils.getInstance().getString("token"))){
+            switch (v.getId()){
+                case R.id.layout_collect:
+                    break;
+                case R.id.layout_car:
+                    openGoodCar();
+                    break;
+                case R.id.txt_buy:
+
+                    break;
+                case R.id.txt_addCar:
+                    addCar();
+                    break;
+            }
+        }else{
+            Intent intent = new Intent(CarActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * 添加进购物车
+     */
+    private void addCar(){
+        if(buyNumber <= 0){
+            Toast.makeText(this, getString(R.string.tips_buynumber), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(goodDetailBean.getData().getProductList().size() > 0){
+            int goodsId = this.goodDetailBean.getData().getProductList().get(0).getGoods_id();
+            int productid = this.goodDetailBean.getData().getProductList().get(0).getId();
+            Map<String,String> map = new HashMap<>();
+            map.put("goodsId",String.valueOf(goodsId));
+            map.put("number",String.valueOf(buyNumber));
+            map.put("productId",String.valueOf(productid));
+            presenter.addGoodCar(map);
+        }
+
+    }
+
+    /**
+     * 打开购物车
+     */
+    private void openGoodCar(){
+        setResult(RECOMMEND_CAR);
+        finish();
     }
 
     @Override
@@ -158,6 +223,11 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
                 tips(getString(R.string.tips_error_goodid));
             }
         }
+
+        /**
+         * 打开购物车
+         */
+
 
         goodsNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,6 +261,7 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
 
     @Override
     public void getGoodDetail(GoodDetailBean goodDetailBean) {
+        this.goodDetailBean = goodDetailBean;
         //h5 商品详情
         initBanner(goodDetailBean.getData().getGallery());
         initGoodDetail(goodDetailBean.getData().getInfo());
@@ -200,7 +271,13 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
         initGoodRcyProblem(goodDetailBean.getData().getIssue());
         initSeeSee(goodDetailBean.getData().getInfo());
 
+        if(goodDetailBean.getData().getProductList().size() > 0){
+            int num = goodDetailBean.getData().getProductList().get(0).getGoods_number();
+            txtNumber.setText(String.valueOf(num));
+            txtNumber.setVisibility(View.VISIBLE);
+        }
     }
+
 
     @Override
     public void getGoodSeeSeeReturn(ShopAllData result) {
@@ -211,6 +288,15 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
             goodRcySeeSee.setAdapter(ecoShopAdapter);
             ecoShopAdapter.notifyDataSetChanged();
         }
+    }
+
+    //添加购物车返回
+    @Override
+    public void addGoodCarReturn(AddCarBean addCarBean) {
+        //添加成功以后跟新数量显示
+        int number = addCarBean.getData().getCartTotal().getGoodsCount();
+        txtNumber.setText(String.valueOf(number));
+        txtNumber.setVisibility(View.VISIBLE);
     }
 
     private void initGoodRcyProblem(List<GoodDetailBean.DataBeanX.IssueBean> issue) {
@@ -315,4 +401,6 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.umeng.soexample.ui.sort;
 
 
+import android.content.Intent;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,11 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.umeng.soexample.R;
+import com.umeng.soexample.base.BaseAdapter;
 import com.umeng.soexample.base.BaseFragment;
 import com.umeng.soexample.interfaces.shot.ISort;
 import com.umeng.soexample.model.sort.SortItemData;
 import com.umeng.soexample.model.sort.SortTabBean;
 import com.umeng.soexample.presenter.sort.SortPresenter;
+import com.umeng.soexample.ui.home.CategoryListAdapter;
+import com.umeng.soexample.ui.home.ChannelListActivity;
 import com.umeng.soexample.ui.sort.SortAdapter;
 
 import java.util.List;
@@ -125,5 +129,16 @@ public class SortFragment extends BaseFragment<SortPresenter> implements ISort.V
         rlvShot.setLayoutManager(new GridLayoutManager(getActivity(),3));
         SortAdapter sortAdapter = new SortAdapter(getActivity(), subCategoryList);
         rlvShot.setAdapter(sortAdapter);
+
+        sortAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int pos) {
+                SortItemData.DataBean.CurrentCategoryBean currentCategory = sortItemData.getData().getCurrentCategory();
+                Intent intent = new Intent(getActivity(), ChannelListActivity.class);
+                intent.putExtra("name",currentCategory.getName());
+                intent.putExtra("categoryid",Integer.valueOf(currentCategory.getId()));
+                getActivity().startActivity(intent);
+            }
+        });
     }
 }

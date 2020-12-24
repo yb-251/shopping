@@ -8,6 +8,8 @@ import com.umeng.soexample.net.CommonSubscriber;
 import com.umeng.soexample.net.HttpManager;
 import com.umeng.soexample.utils.RxUtils;
 
+import java.util.Map;
+
 public class ShopModel extends BaseModel implements IShop.Model {
     @Override
     public void getGoodDetail(int id, CallBack callback) {
@@ -32,6 +34,21 @@ public class ShopModel extends BaseModel implements IShop.Model {
                                 callback.success(shopAllData);
                             }
                         })
+        );
+    }
+
+    @Override
+    public void addGoodCar(Map<String, String> map, CallBack callback) {
+        addDisposable(
+                HttpManager.getInstance().getShopApi().addCar(map)
+                .compose(RxUtils.rxScheduler())
+                .subscribeWith(new CommonSubscriber<AddCarBean>(callback) {
+                    @Override
+                    public void onNext(AddCarBean addCarBean) {
+                        callback.success(addCarBean);
+                    }
+                })
+
         );
     }
 }

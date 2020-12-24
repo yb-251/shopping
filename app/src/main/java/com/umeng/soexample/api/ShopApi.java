@@ -10,10 +10,13 @@ import com.umeng.soexample.model.home.GoodDetailBean;
 import com.umeng.soexample.model.home.GoodsHotBean;
 import com.umeng.soexample.model.home.HotGoodListBean;
 import com.umeng.soexample.model.login.LoginData;
+import com.umeng.soexample.model.shop.AddCarBean;
 import com.umeng.soexample.model.shop.ShopAllData;
 import com.umeng.soexample.model.sort.SortItemData;
 import com.umeng.soexample.model.sort.SortTabBean;
 import com.umeng.soexample.model.shop.CarBean;
+import com.umeng.soexample.ui.shop.DeleteCarBean;
+import com.umeng.soexample.ui.shop.UpdateCarBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -77,9 +80,19 @@ public interface ShopApi {
     //添加到购物车
     @POST("api/cart/add")
     @FormUrlEncoded
-    Flowable<LoginData> addCar(@FieldMap HashMap<String,String> map);
+    Flowable<AddCarBean> addCar(@FieldMap Map<String,String> map);
 
     //购物车列表
     @GET("api/cart/index")
     Flowable<CarBean> getCarList();
+
+    //更新购物车的数据
+    @POST("api/cart/update")
+    @FormUrlEncoded
+    Flowable<UpdateCarBean> updateCar(@FieldMap Map<String,String> map);
+
+    //删除购物车数据
+    @POST("api/cart/delete")
+    @FormUrlEncoded
+    Flowable<DeleteCarBean> deleteCar(@Field("productIds") String productIds);
 }

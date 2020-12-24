@@ -26,6 +26,7 @@ public class NumberSelect extends LinearLayout implements View.OnClickListener {
 
     public void setNumber(int number) {
         this.number = number;
+        initTxtNumber();
     }
 
     private int number; //当前的数字
@@ -43,11 +44,16 @@ public class NumberSelect extends LinearLayout implements View.OnClickListener {
     }
 
     public void addPage(int layout){
+        removeAllViews();
         View view = LayoutInflater.from(getContext()).inflate(layout,this,false);
         addView(view);
         txtReduce = view.findViewById(R.id.txt_reduce);
         txtNumber = view.findViewById(R.id.txt_number);
         txtAdd = view.findViewById(R.id.txt_add);
+
+        txtReduce.setOnClickListener(this);
+        txtAdd.setOnClickListener(this);
+        initTxtNumber();
     }
 
     @Override
@@ -79,6 +85,11 @@ public class NumberSelect extends LinearLayout implements View.OnClickListener {
         }
     }
 
+    private void initTxtNumber(){
+        if(txtNumber != null){
+            txtNumber.setText(String.valueOf(getNumber()));
+        }
+    }
 
     /**
      * 接口回调

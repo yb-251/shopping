@@ -5,6 +5,10 @@ import com.umeng.soexample.interfaces.CallBack;
 import com.umeng.soexample.interfaces.shop.ICar;
 import com.umeng.soexample.model.shop.CarBean;
 import com.umeng.soexample.model.shop.CarModel;
+import com.umeng.soexample.ui.shop.DeleteCarBean;
+import com.umeng.soexample.ui.shop.UpdateCarBean;
+
+import java.util.Map;
 
 public class CarPresenter extends BasePresenter<ICar.View> implements ICar.Presenter {
 
@@ -23,6 +27,36 @@ public class CarPresenter extends BasePresenter<ICar.View> implements ICar.Prese
             @Override
             public void success(Object o) {
                 mView.getCarListReturn((CarBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void updateCar(Map<String, String> map) {
+        model.updateCar(map, new CallBack() {
+            @Override
+            public void fail(String msg) {
+
+            }
+
+            @Override
+            public void success(Object o) {
+                mView.updateCarReturn((UpdateCarBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void deleteCar(String pIds) {
+        model.deleteCar(pIds, new CallBack() {
+            @Override
+            public void fail(String msg) {
+
+            }
+
+            @Override
+            public void success(Object o) {
+                mView.deleteCarReturn((DeleteCarBean) o);
             }
         });
     }

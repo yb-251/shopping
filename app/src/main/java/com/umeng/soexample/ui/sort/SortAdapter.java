@@ -1,6 +1,7 @@
 package com.umeng.soexample.ui.sort;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -8,6 +9,7 @@ import com.bumptech.glide.Glide;
 import com.umeng.soexample.R;
 import com.umeng.soexample.base.BaseAdapter;
 import com.umeng.soexample.model.sort.SortItemData;
+import com.umeng.soexample.ui.home.CategoryListAdapter;
 
 import java.util.List;
 
@@ -26,9 +28,28 @@ public class SortAdapter extends BaseAdapter {
     @Override
     protected void bindData(Object data, VH vh) {
         SortItemData.DataBean.CurrentCategoryBean.SubCategoryListBean data1 = (SortItemData.DataBean.CurrentCategoryBean.SubCategoryListBean) data;
+
         ImageView img_item = (ImageView) vh.getViewById(R.id.img_item);
         TextView tv_sort_item = (TextView) vh.getViewById(R.id.tv_sort_item);
         tv_sort_item.setText(data1.getName());
         Glide.with(context).load(data1.getWap_banner_url()).into(img_item);
+
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onClick(vh.getLayoutPosition());
+            }
+        });
     }
+
+    CategoryListAdapter.OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(CategoryListAdapter.OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener{
+        void onClick(int pos);
+    }
+
 }

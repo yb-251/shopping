@@ -1,27 +1,41 @@
 package com.umeng.soexample.ui.shop;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.FrameLayout;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.umeng.soexample.R;
-import com.umeng.soexample.ui.sort.SortFragment;
+import com.umeng.soexample.ui.fragment.SubjectFragment;
 import com.umeng.soexample.ui.home.HomeFragment;
 import com.umeng.soexample.ui.my.MyFragment;
-import com.umeng.soexample.ui.fragment.SubjectFragment;
+import com.umeng.soexample.ui.sort.SortFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShoppingActivity extends AppCompatActivity {
 
-    private FrameLayout frame_layout;
-    private TabLayout tab;
-    private HomeFragment homeFragment;
-    private SubjectFragment subjectFragment;
-    private SortFragment sortFragment;
-    private ShoppingFragment shoppingFragment;
-    private MyFragment myFragment;
+    ViewPager viewPager;
+    BottomNavigationView nav;
+
+    HomeFragment homeFragment;
+    SubjectFragment subjectFragment;
+    SortFragment sortFragment;
+    ShoppingFragment shoppingFragment;
+    MyFragment myFragment;
+
+    List<Fragment> fragments;
+    MyFragmentPagerAdapter myFragmentPagerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,87 +45,99 @@ public class ShoppingActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        frame_layout = (FrameLayout) findViewById(R.id.frame_layout);
-        tab = (TabLayout) findViewById(R.id.tab);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        nav = (BottomNavigationView) findViewById(R.id.nav_view);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        homeFragment = new HomeFragment();
-        subjectFragment = new SubjectFragment();
-        sortFragment = new SortFragment();
-        shoppingFragment = new ShoppingFragment();
-        myFragment = new MyFragment();
-        transaction.add(R.id.frame_layout,homeFragment)
-                .add(R.id.frame_layout,subjectFragment)
-                .add(R.id.frame_layout, sortFragment)
-                .add(R.id.frame_layout,shoppingFragment)
-                .add(R.id.frame_layout,myFragment)
-                .show(homeFragment)
-                .hide(subjectFragment)
-                .hide(sortFragment)
-                .hide(shoppingFragment)
-                .hide(myFragment)
-                .commit();
+        initFragment();
 
-        tab.addTab(tab.newTab().setText("首页").setIcon(R.drawable.selector_home));
-        tab.addTab(tab.newTab().setText("发现").setIcon(R.drawable.selector_subject));
-        tab.addTab(tab.newTab().setText("分类").setIcon(R.drawable.selector_classify));
-        tab.addTab(tab.newTab().setText("商城").setIcon(R.drawable.selector_shoping));
-        tab.addTab(tab.newTab().setText("我的").setIcon(R.drawable.selector_my));
+        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(myFragmentPagerAdapter);
 
-        tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-                switch (tab.getPosition()){
-                    case 0:
-                        transaction1.show(homeFragment)
-                                .hide(subjectFragment)
-                                .hide(sortFragment)
-                                .hide(shoppingFragment)
-                                .hide(myFragment);
-                        break;
-                    case 1:
-                        transaction1.show(subjectFragment)
-                                .hide(homeFragment)
-                                .hide(sortFragment)
-                                .hide(shoppingFragment)
-                                .hide(myFragment);
-                        break;
-                    case 2:
-                        transaction1.show(sortFragment)
-                                .hide(homeFragment)
-                                .hide(subjectFragment)
-                                .hide(shoppingFragment)
-                                .hide(myFragment);
-                        break;
-                    case 3:
-                        transaction1.show(shoppingFragment)
-                                .hide(homeFragment)
-                                .hide(subjectFragment)
-                                .hide(sortFragment)
-                                .hide(myFragment);
-                        break;
-                    case 4  :
-                        transaction1.show(myFragment)
-                                .hide(homeFragment)
-                                .hide(subjectFragment)
-                                .hide(sortFragment)
-                                .hide(shoppingFragment);
-                        break;
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        item.setIcon(R.mipmap.ic_menu_choice_pressed);
+                        viewPager.setCurrentItem(0);
+                        return true;
+                    case R.id.navigation_topic:
+                        item.setIcon(R.mipmap.ic_menu_topic_pressed);
+                        viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.navigation_sort:
+                        item.setIcon(R.mipmap.ic_menu_sort_pressed);
+                        viewPager.setCurrentItem(2);
+                        return true;
+                    case R.id.navigation_shop:
+                        item.setIcon(R.mipmap.ic_menu_shoping_pressed);
+                        viewPager.setCurrentItem(3);
+                        return true;
+                    case R.id.navigation_me:
+                        item.setIcon(R.mipmap.ic_menu_me_pressed);
+                        viewPager.setCurrentItem(4);
+                        return true;
                 }
-                transaction1.commit();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+                return false;
             }
         });
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                nav.getMenu().getItem(position).setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
+
+    private void initFragment() {
+        fragments = new ArrayList<>();
+        fragments.add(new HomeFragment());
+        fragments.add(new SubjectFragment());
+        fragments.add(new SortFragment());
+        fragments.add(new ShoppingFragment());
+        fragments.add(new MyFragment());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //回调打开购物车
+        if (resultCode == CarActivity.RECOMMEND_CAR) {
+            nav.getMenu().getItem(3).setChecked(true);
+            viewPager.setCurrentItem(3);
+        }
+    }
+
+    class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+
+        private List<Fragment> fragments;
+
+        public MyFragmentPagerAdapter(@NonNull FragmentManager fm, List<Fragment> fragments) {
+            super(fm);
+            this.fragments = fragments;
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
+    }
+
 }

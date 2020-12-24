@@ -3,9 +3,12 @@ package com.umeng.soexample.presenter.shop;
 import com.umeng.soexample.base.BasePresenter;
 import com.umeng.soexample.interfaces.shop.IShop;
 import com.umeng.soexample.interfaces.CallBack;
+import com.umeng.soexample.model.shop.AddCarBean;
 import com.umeng.soexample.model.shop.ShopModel;
 import com.umeng.soexample.model.home.GoodDetailBean;
 import com.umeng.soexample.model.shop.ShopAllData;
+
+import java.util.Map;
 
 public class ShopPresenter extends BasePresenter<IShop.View> implements IShop.Presenter {
     IShop.Model model;
@@ -44,6 +47,21 @@ public class ShopPresenter extends BasePresenter<IShop.View> implements IShop.Pr
                 if (mView!=null){
                     mView.getGoodSeeSeeReturn((ShopAllData) o);
                 }
+            }
+        });
+    }
+
+    @Override
+    public void addGoodCar(Map<String, String> map) {
+        model.addGoodCar(map, new CallBack() {
+            @Override
+            public void fail(String msg) {
+
+            }
+
+            @Override
+            public void success(Object o) {
+                mView.addGoodCarReturn((AddCarBean) o);
             }
         });
     }

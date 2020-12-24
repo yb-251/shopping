@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">电商</string>
 
+    <string name="bar_name_home">首页</string>
+    <string name="bar_name_topic">专题</string>
+    <string name="bar_name_sort">分类</string>
+    <string name="bar_name_shop">购物车</string>
+    <string name="bar_name_me">我的</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">商品搜索,共239款好物</string>
@@ -26,4 +32,5 @@
 
     <string name="text_empty">用户名密码不能为空</string>
     <string name="text_error">用户名密码错误</string>
+    <string name="tips_buynumber">请选中购买商品数量</string>
 </resources>

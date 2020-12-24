@@ -30,8 +30,9 @@
                 <include layout="@layout/layout_car_item"/>
                 <RelativeLayout
                     android:id="@+id/rel_goods"
+                    android:padding="@dimen/dp_40"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
