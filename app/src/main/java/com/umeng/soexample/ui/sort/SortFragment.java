@@ -104,6 +104,7 @@ public class SortFragment extends BaseFragment<SortPresenter> implements ISort.V
                 return 0;
             }
         });
+        //presenter.getShotItemData();
         vTab.addOnTabSelectedListener(new VerticalTabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabView tab, int position) {
@@ -124,7 +125,7 @@ public class SortFragment extends BaseFragment<SortPresenter> implements ISort.V
     public void getShotItemReturn(SortItemData sortItemData) {
         List<SortItemData.DataBean.CurrentCategoryBean.SubCategoryListBean> subCategoryList = sortItemData.getData().getCurrentCategory().getSubCategoryList();
         tvImg.setText(sortItemData.getData().getCurrentCategory().getFront_name());
-        tvItem.setText(sortItemData.getData().getCurrentCategory().getName() + "分类");
+        tvItem.setText("——"+sortItemData.getData().getCurrentCategory().getName() + "分类——");
         Glide.with(getActivity()).load(sortItemData.getData().getCurrentCategory().getWap_banner_url()).into(imgItemSort);
         rlvShot.setLayoutManager(new GridLayoutManager(getActivity(),3));
         SortAdapter sortAdapter = new SortAdapter(getActivity(), subCategoryList);

@@ -24,6 +24,7 @@ import com.umeng.soexample.interfaces.home.IHome;
 import com.umeng.soexample.model.home.HomeData;
 import com.umeng.soexample.presenter.home.HomePresenter;
 import com.umeng.soexample.ui.shop.CarActivity;
+import com.umeng.soexample.ui.shop.FavoritesActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -37,6 +38,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
 
 
     private Banner banner;
+    private LinearLayout fl;
     private LinearLayout layout_tab;
     private TextView tv_brand_title;
     private RecyclerView rlv_brand;
@@ -78,6 +80,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
     @Override
     protected void initView() {
         banner = getActivity().findViewById(R.id.banner);
+        fl = getActivity().findViewById(R.id.fl);
         layout_tab = getActivity().findViewById(R.id.layout_tab);
         tv_brand_title = getActivity().findViewById(R.id.tv_brand_title);
         rlv_brand = getActivity().findViewById(R.id.rlv_brand);
@@ -91,21 +94,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
         search = getActivity().findViewById(R.id.search);
 
         String s = tv_brand_title.getText().toString();
-        Log.d("tag", "initView: "+s);
-        rlv_brand.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        brandList = new ArrayList<>();
-        brandAdapter = new BrandAdapter(getActivity(), brandList);
-        rlv_brand.setAdapter(brandAdapter);
-
-        rlv_newgood.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        newGoodsListBean = new ArrayList<>();
-        newGoodsAdapter = new NewGoodsAdapter(getActivity(), newGoodsListBean);
-        rlv_newgood.setAdapter(newGoodsAdapter);
-
-        rlv_hotgoods.setLayoutManager(new LinearLayoutManager(getActivity()));
-        hotGoodsListBean = new ArrayList<>();
-        hotGoodsAdapter = new HotGoodsAdapter(getActivity(), hotGoodsListBean);
-        rlv_hotgoods.setAdapter(hotGoodsAdapter);
+        Log.d("tag", "initView: " + s);
 
         rlv_topic.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         topicListBean = new ArrayList<>();
@@ -114,7 +103,12 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
 
         tv_brand_title.setOnClickListener(this);
         tv_newgood_title.setOnClickListener(this);
-    }    @Override
+        fl.setOnClickListener(this);
+    }
+
+    //0.178
+
+    @Override
     protected void initData() {
         presenter.getHomeData();
     }
@@ -148,7 +142,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
                 @Override
                 public void onClick(int pos) {
                     Intent intent = new Intent(getActivity(), CarActivity.class);
-                    intent.putExtra("goodid",Integer.parseInt(listBean.get(pos).getId()));
+                    intent.putExtra("goodid", Integer.parseInt(listBean.get(pos).getId()));
                     getActivity().startActivity(intent);
                 }
             });
@@ -163,28 +157,68 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
     }
 
     private void initHotGoods(List<HomeData.DataBean.HotGoodsListBean> list) {
+        rlv_hotgoods.setLayoutManager(new LinearLayoutManager(getActivity()));
+        hotGoodsListBean = new ArrayList<>();
+        hotGoodsAdapter = new HotGoodsAdapter(getActivity(), hotGoodsListBean);
+        rlv_hotgoods.setAdapter(hotGoodsAdapter);
         hotGoodsListBean.clear();
         hotGoodsListBean.addAll(list);
         hotGoodsAdapter.notifyDataSetChanged();
+
+        hotGoodsAdapter.setOnItemClickListener(new BrandAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int pos) {
+                Intent intent = new Intent(getActivity(), CarActivity.class);
+                intent.putExtra("goodid",list.get(pos).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void initBrand(List<HomeData.DataBean.BrandListBean> list) {
+        rlv_brand.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        brandList = new ArrayList<>();
+        brandAdapter = new BrandAdapter(getActivity(), brandList);
+        rlv_brand.setAdapter(brandAdapter);
         brandList.clear();
         brandList.addAll(list);
         brandAdapter.notifyDataSetChanged();
+
+        brandAdapter.setOnItemClickListener(new BrandAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int pos) {
+                Intent intent = new Intent(getActivity(), BrandItemDetailsActivity.class);
+                intent.putExtra("id",brandList.get(pos).getId());
+                intent.putExtra("name",brandList.get(pos).getName());
+                startActivity(intent);
+            }
+        });
     }
 
     private void initNewGoods(List<HomeData.DataBean.NewGoodsListBean> list) {
+        rlv_newgood.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        newGoodsListBean = new ArrayList<>();
+        newGoodsAdapter = new NewGoodsAdapter(getActivity(), newGoodsListBean);
+        rlv_newgood.setAdapter(newGoodsAdapter);
         newGoodsListBean.clear();
         newGoodsListBean.addAll(list);
         newGoodsAdapter.notifyDataSetChanged();
+
+        newGoodsAdapter.setOnItemClickListener(new BrandAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int pos) {
+                Intent intent = new Intent(getActivity(), CarActivity.class);
+                intent.putExtra("goodid",newGoodsListBean.get(pos).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void initChannel(List<HomeData.DataBean.ChannelBean> list) {
         layout_tab.removeAllViews();
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1);
-        for(HomeData.DataBean.ChannelBean item:list){
-            View channel = LayoutInflater.from(getContext()).inflate(R.layout.layout_channel,layout_tab,false);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+        for (HomeData.DataBean.ChannelBean item : list) {
+            View channel = LayoutInflater.from(getContext()).inflate(R.layout.layout_channel, layout_tab, false);
             ImageView img = channel.findViewById(R.id.img_channel);
             TextView txtChannel = channel.findViewById(R.id.txt_channel);
             Glide.with(getActivity()).load(item.getIcon_url()).into(img);
@@ -196,14 +230,13 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
             channel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int curId = ((HomeData.DataBean.ChannelBean)v.getTag()).getCategoryid();
-                    Intent intent = new Intent(mContext,ChannelListActivity.class);
-                    intent.putExtra("categoryid",curId);
+                    int curId = ((HomeData.DataBean.ChannelBean) v.getTag()).getCategoryid();
+                    Intent intent = new Intent(mContext, ChannelListActivity.class);
+                    intent.putExtra("categoryid", curId);
                     startActivity(intent);
                 }
             });
         }
-
     }
 
     private void initBanner(List<HomeData.DataBean.BannerBean> list) {
@@ -224,12 +257,15 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHome.V
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_brand_title:
                 startActivity(new Intent(getActivity(), BrandDetailsActivity.class));
                 break;
             case R.id.tv_newgood_title:
-                startActivity(new Intent(getActivity(), NewGoodsActivity.class));
+                startActivity(new Intent(getActivity(), NewGoodListActivity.class));
+                break;
+            case R.id.fl:
+                startActivity(new Intent(getActivity(), FavoritesActivity.class));
                 break;
         }
     }

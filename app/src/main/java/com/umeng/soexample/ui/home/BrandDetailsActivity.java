@@ -59,7 +59,7 @@ public class BrandDetailsActivity extends BaseActivity<BrandDetailsPresenter> im
             public void onClick(int pos) {
                 Intent intent = new Intent(BrandDetailsActivity.this,BrandItemDetailsActivity.class);
                 intent.putExtra("id",brandDetailsData.getData().getData().get(pos).getId());
-                intent.putExtra("pos",pos);
+                intent.putExtra("name",brandDetailsData.getData().getData().get(pos).getName());
                 startActivity(intent);
             }
         });

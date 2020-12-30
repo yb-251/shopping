@@ -1,6 +1,7 @@
 package com.umeng.soexample.ui.home;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,5 +32,25 @@ public class BrandAdapter extends BaseAdapter {
         TxtUtils.setTextView(brand_price,bean.getFloor_price()+"元");
         TxtUtils.setTextView(brand_title,bean.getName());
         Glide.with(context).load(bean.getNew_pic_url()).into(brand_img);
+
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null){
+                    onItemClickListener.onClick(vh.getLayoutPosition());
+                }
+            }
+        });
     }
+
+    OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    interface OnItemClickListener{
+        void onClick(int pos);
+    }
+
 }

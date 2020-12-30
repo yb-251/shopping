@@ -52,6 +52,7 @@ import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
 public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.View, View.OnClickListener {
 
@@ -109,9 +110,11 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
     RecyclerView goodRcyProblem;
     private ImageView img_ppopup;
 
+    private PopupWindow popupWindow;
     GoodDetailBean goodDetailBean;
     public static final int RECOMMEND_CAR = 1000; //打开购物车的指令
-    int buyNumber=1; //购买的数量
+    int buyNumber=1; //购买的数 量
+
 
 
     private String h5 = "<html>\n" +
@@ -135,11 +138,15 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
     private long category_id;
     private String page;
     private String size;
+
     private long goods_sn;
     private ProgressBar ProgressBar;
+    private GoodDetailBean.DataBeanX.InfoBean info;
+    private Realm realm;
 
     @Override
     protected int getLayout() {
+        realm = Realm.getDefaultInstance();
         return R.layout.activity_car;
     }
 
@@ -155,6 +162,24 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
         txtAddCar = findViewById(R.id.txt_addCar);
         goodsNumber = findViewById(R.id.goods_number);
 
+        txtAddCar.setTag(1);
+        txtAddCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tag = (int) txtAddCar.getTag();
+                if (tag == 1){
+                    initPopup();
+                    txtAddCar.setTag(2);
+                }
+                if (tag == 2){
+                    popupWindow.dismiss();
+                    Toast.makeText(CarActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+                    txtAddCar.setTag(1);
+                }
+
+            }
+        });
+
         layoutCollect.setOnClickListener(this);
         layoutCar.setOnClickListener(this);
         txtBuy.setOnClickListener(this);
@@ -166,6 +191,7 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
         if(!TextUtils.isEmpty(SpUtils.getInstance().getString("token"))){
             switch (v.getId()){
                 case R.id.layout_collect:
+                    Collection();
                     break;
                 case R.id.layout_car:
                     openGoodCar();
@@ -227,8 +253,6 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
         /**
          * 打开购物车
          */
-
-
         goodsNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,7 +265,7 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
         View inflate = LayoutInflater.from(this).inflate(R.layout.popu_good_detail, null);
         int[] ints = new int[2];
         layoutShop.getLocationOnScreen(ints);
-        PopupWindow popupWindow = new PopupWindow(inflate, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow = new PopupWindow(inflate, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setBackgroundDrawable(new ColorDrawable());
         popupWindow.setOutsideTouchable(true);
         popupWindow.showAtLocation(layoutShop, Gravity.NO_GRAVITY, 0, ints[1] - 570);
@@ -250,11 +274,31 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
 
     private void initPopupView(View view, PopupWindow popupWindow) {
         img_ppopup = view.findViewById(R.id.good_detail_img);
+        TextView tv_less = view.findViewById(R.id.tv_less);
+        TextView tv_number = view.findViewById(R.id.tv_number);
+        TextView tv_pius = view.findViewById(R.id.tv_pius);
         ImageView cancel = view.findViewById(R.id.good_detail_cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
+            }
+        });
+        tv_less.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buyNumber -= 1;
+                if (buyNumber == 1) {
+                    return;
+                }
+                tv_number.setText(String.valueOf(buyNumber));
+            }
+        });
+        tv_pius.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buyNumber+=1;
+                tv_number.setText(String.valueOf(buyNumber));
             }
         });
     }
@@ -263,8 +307,9 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
     public void getGoodDetail(GoodDetailBean goodDetailBean) {
         this.goodDetailBean = goodDetailBean;
         //h5 商品详情
+        info = goodDetailBean.getData().getInfo();
         initBanner(goodDetailBean.getData().getGallery());
-        initGoodDetail(goodDetailBean.getData().getInfo());
+        initGoodDetail(info);
         initPopupWindow(goodDetailBean.getData());
         initAttribute(goodDetailBean.getData().getAttribute());
         initVebView(goodDetailBean.getData().getInfo().getGoods_desc());
@@ -315,6 +360,21 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
         tvGoodNames.setText(name);
         tvGoodDescs.setText(goods_brief);
         tvGoodPrices.setText(String.valueOf("￥ " + retail_price));
+    }
+
+    private void Collection() {
+        Realms.getRealm(CarActivity.this).executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Favorites favorites = realm.createObject(Favorites.class);
+                favorites.setName(info.getName());
+                favorites.setPic(info.getList_pic_url());
+                favorites.setPrice(String.valueOf(info.getRetail_price()));
+                favorites.setTitle(info.getGoods_brief());
+
+                Toast.makeText(CarActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initSeeSee(GoodDetailBean.DataBeanX.InfoBean info) {
@@ -394,13 +454,5 @@ public class CarActivity extends BaseActivity<IShop.Presenter> implements IShop.
         }
 
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
 
 }

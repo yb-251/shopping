@@ -1,6 +1,7 @@
 package com.umeng.soexample.ui.home;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,5 +32,24 @@ public class CategoryGoodAdapter extends BaseAdapter<CategoryGoodBean.DataBeanX.
         TextView txtCategoryPrice = (TextView) vh.getViewById(R.id.txt_categoryprice);
         String price = "$"+data.getRetail_price();
         TxtUtils.setTextView(txtCategoryPrice,price);
+
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null){
+                    onItemClickListener.onClick(vh.getLayoutPosition());
+                }
+            }
+        });
+    }
+
+    BrandAdapter.OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(BrandAdapter.OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    interface OnItemClickListener{
+        void onClick(int pos);
     }
 }

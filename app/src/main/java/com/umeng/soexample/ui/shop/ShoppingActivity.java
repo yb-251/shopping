@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.umeng.soexample.R;
-import com.umeng.soexample.ui.fragment.SubjectFragment;
+import com.umeng.soexample.ui.topic.TopicFragment;
 import com.umeng.soexample.ui.home.HomeFragment;
 import com.umeng.soexample.ui.my.MyFragment;
 import com.umeng.soexample.ui.sort.SortFragment;
@@ -28,7 +28,7 @@ public class ShoppingActivity extends AppCompatActivity {
     BottomNavigationView nav;
 
     HomeFragment homeFragment;
-    SubjectFragment subjectFragment;
+    TopicFragment topicFragment;
     SortFragment sortFragment;
     ShoppingFragment shoppingFragment;
     MyFragment myFragment;
@@ -41,22 +41,18 @@ public class ShoppingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping);
-        initView();
-    }
 
-    private void initView() {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         nav = (BottomNavigationView) findViewById(R.id.nav_view);
 
         initFragment();
-
-        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
+        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),fragments);
         viewPager.setAdapter(myFragmentPagerAdapter);
 
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+                switch (item.getItemId()){
                     case R.id.navigation_home:
                         item.setIcon(R.mipmap.ic_menu_choice_pressed);
                         viewPager.setCurrentItem(0);
@@ -100,29 +96,29 @@ public class ShoppingActivity extends AppCompatActivity {
         });
     }
 
-    private void initFragment() {
+    private void initFragment(){
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
-        fragments.add(new SubjectFragment());
+        fragments.add(new TopicFragment());
         fragments.add(new SortFragment());
         fragments.add(new ShoppingFragment());
         fragments.add(new MyFragment());
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //回调打开购物车
-        if (resultCode == CarActivity.RECOMMEND_CAR) {
+        if(resultCode == CarActivity.RECOMMEND_CAR){
             nav.getMenu().getItem(3).setChecked(true);
             viewPager.setCurrentItem(3);
         }
     }
 
-    class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+    class MyFragmentPagerAdapter extends FragmentPagerAdapter{
 
-        private List<Fragment> fragments;
-
+        List<Fragment> fragments;
         public MyFragmentPagerAdapter(@NonNull FragmentManager fm, List<Fragment> fragments) {
             super(fm);
             this.fragments = fragments;
@@ -139,5 +135,4 @@ public class ShoppingActivity extends AppCompatActivity {
             return fragments.size();
         }
     }
-
 }

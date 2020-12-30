@@ -1,6 +1,7 @@
 package com.umeng.soexample.ui.home;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,5 +34,24 @@ public class HotGoodsAdapter extends BaseAdapter {
         TxtUtils.setTextView(tv_hotgoods_desc,bean.getGoods_brief());
         TxtUtils.setTextView(tv_hotgoods_price,"￥"+bean.getRetail_price());
         Glide.with(context).load(bean.getList_pic_url()).into(img_hotgoods);
+
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null){
+                    onItemClickListener.onClick(vh.getLayoutPosition());
+                }
+            }
+        });
+    }
+
+    BrandAdapter.OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(BrandAdapter.OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    interface OnItemClickListener{
+        void onClick(int pos);
     }
 }

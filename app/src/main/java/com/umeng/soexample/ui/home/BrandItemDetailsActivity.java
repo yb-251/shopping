@@ -22,7 +22,7 @@ public class BrandItemDetailsActivity extends BaseActivity<BrandDetailsPresenter
     private RecyclerView rlv_brand_item;
     private RecyclerView rlv_brand_list;
     private int id;
-    private int pos;
+    private String name;
     int page = 1;
     int size = 100;
     private List<BrandDetailsItemData.DataBean.BrandBean> itemBean;
@@ -46,7 +46,7 @@ public class BrandItemDetailsActivity extends BaseActivity<BrandDetailsPresenter
         rlv_brand_list = (RecyclerView) findViewById(R.id.rlv_brand_list);
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
-        pos = intent.getIntExtra("pos",0);
+        name = intent.getStringExtra("name");
 
         rlv_brand_item.setLayoutManager(new LinearLayoutManager(this));
         itemBean = new ArrayList<>();
@@ -79,7 +79,7 @@ public class BrandItemDetailsActivity extends BaseActivity<BrandDetailsPresenter
 
     @Override
     public void getBrandDetailsListReturn(BrandDetailsListData brandDetailsListData) {
-        if (pos==0){
+        if (name.equals("MUJI制造商")){
             beanList.clear();
             beanList.addAll(brandDetailsListData.getData().getData());
             brandListAdapter.notifyDataSetChanged();

@@ -3,6 +3,8 @@
     package="com.umeng.soexample">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".app.MyApp"
@@ -13,24 +15,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.my.RegisterActivity"></activity>
-        <activity android:name=".ui.my.LoginActivity">
+        <activity android:name=".SplashActivity">
 
         </activity>
-        <activity android:name=".ui.home.NewGoodsActivity" />
-        <activity android:name=".ui.home.BrandItemDetailsActivity" />
-        <activity android:name=".ui.home.BrandDetailsActivity" />
-        <activity android:name=".ui.shop.ShoppingActivity">
+        <activity android:name=".SplaceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.shop.FavoritesActivity" />
+        <activity android:name=".ui.topic.TopicDetailsActivity" />
+        <activity android:name=".ui.shop.SubmitActivity" />
+        <activity android:name=".ui.my.RegisterActivity" />
+        <activity android:name=".ui.my.LoginActivity" />
+        <activity android:name=".ui.home.BrandItemDetailsActivity" />
+        <activity android:name=".ui.home.BrandDetailsActivity" />
+        <activity android:name=".ui.shop.ShoppingActivity"></activity>
+        <activity android:name=".ui.my.UserInfoDetailActivity" />
         <activity android:name=".text.Demo1Activity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".ui.topic.TopicActivity" />
         <activity android:name=".ui.home.ChannelListActivity" />
         <activity android:name=".ui.shop.CarActivity" />
+        <activity android:name=".ui.home.NewGoodListActivity" />
     </application>
 
 </manifest>

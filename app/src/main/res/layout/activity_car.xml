@@ -24,39 +24,44 @@
 
             <!--商品信息-->
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_200">
-                <include layout="@layout/layout_car_item"/>
+                android:layout_height="@dimen/dp_200"
+                android:orientation="vertical">
+
+                <include layout="@layout/layout_car_item" />
+
                 <RelativeLayout
                     android:id="@+id/rel_goods"
-                    android:padding="@dimen/dp_40"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/dp_40">
+
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/tv_good_names"
-                        android:textSize="@dimen/dp_22"
-                        android:textColor="@color/textColorBlack"
-                        android:gravity="center_horizontal"
-                        android:text=""/>
-                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tv_good_descs"
+                        android:gravity="center_horizontal"
+                        android:text=""
                         android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/dp_22" />
+
+                    <TextView
+                        android:id="@+id/tv_good_descs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/tv_good_names"
-                        android:gravity="center_horizontal"/>
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/textColorBlack" />
+
                     <TextView
                         android:id="@+id/tv_good_prices"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:textSize="@dimen/dp_20"
-                        android:textColor="@color/Red"
                         android:layout_below="@id/tv_good_descs"
-                        android:layout_marginTop="@dimen/dp_20"/>
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:textColor="@color/Red"
+                        android:textSize="@dimen/dp_20" />
                 </RelativeLayout>
             </LinearLayout>
             <!--数量选择区域-->
@@ -138,18 +143,20 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:id="@+id/tv_attribute"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="商品参数"
                     android:textSize="@dimen/sp_20"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcy_attribute"
-                    app:layout_constraintTop_toBottomOf="@id/tv_attribute"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_attribute" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!--商品详情区域-->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -167,39 +174,43 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:id="@+id/tv_problem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="——常见问题——"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:gravity="center_horizontal"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:text="——常见问题——"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/good_rcy_problem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/tv_problem"
-                    android:id="@+id/good_rcy_problem"/>
+                    app:layout_constraintTop_toBottomOf="@id/tv_problem" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!--大家都在看的商品区域-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:id="@+id/tv_people_see"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="——大家都在看——"
-                    android:textColor="@color/textColorBlack"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:gravity="center_horizontal"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:text="——大家都在看——"
+                    android:textColor="@color/textColorBlack"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/good_rcy_see_see"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/tv_people_see"
-                    android:id="@+id/good_rcy_see_see"/>
+                    app:layout_constraintTop_toBottomOf="@id/tv_people_see" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

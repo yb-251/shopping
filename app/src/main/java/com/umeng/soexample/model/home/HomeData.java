@@ -273,16 +273,16 @@ public class HomeData {
              * retail_price : 36
              */
 
-            private long id;
+            private int id;
             private String name;
             private String list_pic_url;
             private double retail_price;
 
-            public long getId() {
+            public int getId() {
                 return id;
             }
 
-            public void setId(long id) {
+            public void setId(int id) {
                 this.id = id;
             }
 
@@ -320,17 +320,17 @@ public class HomeData {
              * goods_brief : 一级桑蚕丝，吸湿透气柔软
              */
 
-            private long id;
+            private int id;
             private String name;
             private String list_pic_url;
             private double retail_price;
             private String goods_brief;
 
-            public long getId() {
+            public int getId() {
                 return id;
             }
 
-            public void setId(long id) {
+            public void setId(int id) {
                 this.id = id;
             }
 
@@ -385,7 +385,7 @@ public class HomeData {
              * new_sort_order : 1
              */
 
-            private long id;
+            private int id;
             private String name;
             private String list_pic_url;
             private String simple_desc;
@@ -398,11 +398,11 @@ public class HomeData {
             private String new_pic_url;
             private long new_sort_order;
 
-            public long getId() {
+            public int getId() {
                 return id;
             }
 
-            public void setId(long id) {
+            public void setId(int id) {
                 this.id = id;
             }
 

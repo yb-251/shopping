@@ -30,6 +30,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.realm.Realm;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -169,6 +171,7 @@ public class ShoppingFragment extends BaseFragment<ICar.Presenter> implements IC
 
     /**
      * 更新接口之后的返回
+     * @param result
      */
     @Override
     public void updateCarReturn(UpdateCarBean result) {
@@ -186,6 +189,8 @@ public class ShoppingFragment extends BaseFragment<ICar.Presenter> implements IC
 
     /**
      * 刷新购物车列表的数据
+     * @param carId
+     * @param number
      */
     private void updateCartListBeanNumberById(int carId,int number){
         for(CarBean.DataBean.CartListBean item:list){
@@ -198,6 +203,7 @@ public class ShoppingFragment extends BaseFragment<ICar.Presenter> implements IC
 
     /**
      * 删除购物车列表返回
+     * @param result
      */
     @Override
     public void deleteCarReturn(DeleteCarBean result) {
@@ -221,6 +227,9 @@ public class ShoppingFragment extends BaseFragment<ICar.Presenter> implements IC
 
     /**
      * 判断当前的本地列表的购物车列表数据是否在返回的最新列表中存在
+     * @param list
+     * @param carId
+     * @return
      */
     private boolean deleteCarListById(List<DeleteCarBean.DataBean.CartListBean> list ,int carId){
         for(DeleteCarBean.DataBean.CartListBean item:list){
@@ -247,6 +256,8 @@ public class ShoppingFragment extends BaseFragment<ICar.Presenter> implements IC
 
     /**
      * 编辑状态下的数据刷新
+     *
+     * @param bool
      */
     private void updateGoodSelectStateEdit(boolean bool) {
         for (CarBean.DataBean.CartListBean item : list) {
@@ -336,6 +347,8 @@ public class ShoppingFragment extends BaseFragment<ICar.Presenter> implements IC
     private void submit() {
         if ("下单".equals(txtSubmit.getText().toString())) {
             //下单
+            Intent intent = new Intent(getActivity(), SubmitActivity.class);
+            startActivity(intent);
         } else if ("删除所选".equals(txtSubmit.getText().toString())) {
             //删除购物车所选数据
             deleteCar();

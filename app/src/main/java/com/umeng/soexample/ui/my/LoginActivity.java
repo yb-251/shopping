@@ -125,7 +125,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements View.
         }
     }
 
-    //用户名一键清除
+
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -133,7 +133,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements View.
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        clear_view.setVisibility(s.length() > 0 ? VISIBLE : INVISIBLE);
+
     }
 
     @Override

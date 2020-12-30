@@ -12,4 +12,5 @@
     <color name="line_color">#ECECEC</color>
     <color name="font_color_light">#999999</color>
     <color name="grey9494">#f39494</color>
+    <color name="TextBlue">#229DFF</color>
 </resources>

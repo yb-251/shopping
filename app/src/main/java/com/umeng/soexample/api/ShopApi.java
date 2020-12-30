@@ -10,15 +10,18 @@ import com.umeng.soexample.model.home.GoodDetailBean;
 import com.umeng.soexample.model.home.GoodsHotBean;
 import com.umeng.soexample.model.home.HotGoodListBean;
 import com.umeng.soexample.model.login.LoginData;
+import com.umeng.soexample.model.my.UserInfoBean;
 import com.umeng.soexample.model.shop.AddCarBean;
 import com.umeng.soexample.model.shop.ShopAllData;
 import com.umeng.soexample.model.sort.SortItemData;
 import com.umeng.soexample.model.sort.SortTabBean;
 import com.umeng.soexample.model.shop.CarBean;
+import com.umeng.soexample.model.topic.TopicBean;
+import com.umeng.soexample.model.topic.TopicRelated;
+import com.umeng.soexample.model.topic.TopicdeBean;
 import com.umeng.soexample.ui.shop.DeleteCarBean;
 import com.umeng.soexample.ui.shop.UpdateCarBean;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -33,6 +36,7 @@ import retrofit2.http.QueryMap;
 public interface ShopApi {
     String BASE_URL = "http://cdplay.cn/";
 
+    //首页
     @GET("api/index")
     Flowable<HomeData> getHomeData();
 
@@ -46,18 +50,19 @@ public interface ShopApi {
     Flowable<BrandDetailsData> getBrandDetailsData();
 
     @GET("api/brand/detail")
-    Flowable<BrandDetailsItemData> getBrandDetailsItemData(@Query("id")int cid);
+    Flowable<BrandDetailsItemData> getBrandDetailsItemData(@Query("id") int cid);
 
     @GET("api/goods/list")
-    Flowable<BrandDetailsListData> getBrandDetailsListData(@Query("brandId")int cid,@Query("page")int page,@Query("size")int size);
+    Flowable<BrandDetailsListData> getBrandDetailsListData(@Query("brandId") int cid, @Query("page") int page, @Query("size") int size);
 
     //新品发布的条件筛选数据接口
     @GET("api/goods/list")
-    Flowable<HotGoodListBean> getHotGoodList(@QueryMap Map<String,String> map);
+    Flowable<HotGoodListBean> getHotGoodList(@QueryMap Map<String, String> map);
+
     //新品首页图片
     //https://cdplay.cn/api/goods/hot
     @GET("api/goods/hot")
-    Flowable<GoodsHotBean>getGoosHotData();
+    Flowable<GoodsHotBean> getGoosHotData();
 
     //商品详情购买页
     @GET("api/goods/detail")
@@ -80,7 +85,7 @@ public interface ShopApi {
     //添加到购物车
     @POST("api/cart/add")
     @FormUrlEncoded
-    Flowable<AddCarBean> addCar(@FieldMap Map<String,String> map);
+    Flowable<AddCarBean> addCar(@FieldMap Map<String, String> map);
 
     //购物车列表
     @GET("api/cart/index")
@@ -89,10 +94,29 @@ public interface ShopApi {
     //更新购物车的数据
     @POST("api/cart/update")
     @FormUrlEncoded
-    Flowable<UpdateCarBean> updateCar(@FieldMap Map<String,String> map);
+    Flowable<UpdateCarBean> updateCar(@FieldMap Map<String, String> map);
 
     //删除购物车数据
     @POST("api/cart/delete")
     @FormUrlEncoded
     Flowable<DeleteCarBean> deleteCar(@Field("productIds") String productIds);
+
+    //专题列表
+    //https://cdplay.cn/api/topic/list
+    @GET("api/topic/list/")
+    Flowable<TopicBean>getTopic(@Query("page") int page);
+
+    //https://cdplay.cn/api/topic/detail?id=314
+    //专题详情数据
+    @GET("api/topic/detail")
+    Flowable<TopicdeBean>getTopicde(@Query("id") int id);
+
+    //https://cdplay.cn/api/topic/related?id=314
+    //专题底部列表
+    @GET("api/topic/related")
+    Flowable<TopicRelated>getTopicRela(@Query("id") int id);
+
+    //用户信息更新
+    @POST("api/user/updateUserInfo")
+    Flowable<UserInfoBean> updateUserInfo(@FieldMap Map<String,String> map);
 }

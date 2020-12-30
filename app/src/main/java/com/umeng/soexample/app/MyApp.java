@@ -1,7 +1,10 @@
 package com.umeng.soexample.app;
 
 import android.app.Application;
-import android.database.sqlite.SQLiteDatabase;
+
+import androidx.multidex.MultiDex;
+
+import io.realm.Realm;
 
 public class MyApp extends Application {
 
@@ -11,5 +14,7 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         app = this;
+        Realm.init(this);
+        MultiDex.install(this);
     }
 }

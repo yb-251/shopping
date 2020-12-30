@@ -7,7 +7,7 @@ public class AddCarBean {
     /**
      * errno : 0
      * errmsg :
-     * data : {"cartList":[{"id":667,"user_id":7,"session_id":"1","goods_id":1147048,"goods_sn":"1147048","product_id":228,"goods_name":"简约知性系列居家地毯 蓝灰格","market_price":559,"retail_price":559,"number":6,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/fd7920a2eadd10fa10c0c03959a2abe0.png"},{"id":670,"user_id":7,"session_id":"1","goods_id":1051003,"goods_sn":"1051003","product_id":66,"goods_name":"Carat钻石奶锅18cm","market_price":148,"retail_price":148,"number":4,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/6a54ccc389afb2459b163245bbb2c978.png"},{"id":674,"user_id":7,"session_id":"1","goods_id":1009024,"goods_sn":"1009024","product_id":16,"goods_name":"日式和风懒人沙发","market_price":599,"retail_price":599,"number":2,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":0,"list_pic_url":"http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png"},{"id":675,"user_id":7,"session_id":"1","goods_id":1015007,"goods_sn":"1015007","product_id":21,"goods_name":"典雅美式全棉刺绣抱枕","market_price":59,"retail_price":59,"number":2,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/a2045004de8a6225289376ad54317fc8.png"}],"cartTotal":{"goodsCount":14,"goodsAmount":5262,"checkedGoodsCount":12,"checkedGoodsAmount":4064}}
+     * data : {"cartList":[{"id":1014,"user_id":5,"session_id":"1","goods_id":1116033,"goods_sn":"1116033","product_id":171,"goods_name":"多功能人体工学转椅","market_price":1399,"retail_price":1399,"number":2,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/f1dbf1d9967c478ee6def81ed40734a2.png"},{"id":1048,"user_id":5,"session_id":"1","goods_id":1019000,"goods_sn":"1019000","product_id":22,"goods_name":"升级款护颈波浪记忆枕","market_price":99,"retail_price":99,"number":23,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/77c09feb378814be712741b273d16656.png"}],"cartTotal":{"goodsCount":25,"goodsAmount":5075,"checkedGoodsCount":25,"checkedGoodsAmount":5075}}
      */
 
     private int errno;
@@ -40,8 +40,8 @@ public class AddCarBean {
 
     public static class DataBean {
         /**
-         * cartList : [{"id":667,"user_id":7,"session_id":"1","goods_id":1147048,"goods_sn":"1147048","product_id":228,"goods_name":"简约知性系列居家地毯 蓝灰格","market_price":559,"retail_price":559,"number":6,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/fd7920a2eadd10fa10c0c03959a2abe0.png"},{"id":670,"user_id":7,"session_id":"1","goods_id":1051003,"goods_sn":"1051003","product_id":66,"goods_name":"Carat钻石奶锅18cm","market_price":148,"retail_price":148,"number":4,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/6a54ccc389afb2459b163245bbb2c978.png"},{"id":674,"user_id":7,"session_id":"1","goods_id":1009024,"goods_sn":"1009024","product_id":16,"goods_name":"日式和风懒人沙发","market_price":599,"retail_price":599,"number":2,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":0,"list_pic_url":"http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png"},{"id":675,"user_id":7,"session_id":"1","goods_id":1015007,"goods_sn":"1015007","product_id":21,"goods_name":"典雅美式全棉刺绣抱枕","market_price":59,"retail_price":59,"number":2,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/a2045004de8a6225289376ad54317fc8.png"}]
-         * cartTotal : {"goodsCount":14,"goodsAmount":5262,"checkedGoodsCount":12,"checkedGoodsAmount":4064}
+         * cartList : [{"id":1014,"user_id":5,"session_id":"1","goods_id":1116033,"goods_sn":"1116033","product_id":171,"goods_name":"多功能人体工学转椅","market_price":1399,"retail_price":1399,"number":2,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/f1dbf1d9967c478ee6def81ed40734a2.png"},{"id":1048,"user_id":5,"session_id":"1","goods_id":1019000,"goods_sn":"1019000","product_id":22,"goods_name":"升级款护颈波浪记忆枕","market_price":99,"retail_price":99,"number":23,"goods_specifition_name_value":"","goods_specifition_ids":"","checked":1,"list_pic_url":"http://yanxuan.nosdn.127.net/77c09feb378814be712741b273d16656.png"}]
+         * cartTotal : {"goodsCount":25,"goodsAmount":5075,"checkedGoodsCount":25,"checkedGoodsAmount":5075}
          */
 
         private CartTotalBean cartTotal;
@@ -65,10 +65,10 @@ public class AddCarBean {
 
         public static class CartTotalBean {
             /**
-             * goodsCount : 14
-             * goodsAmount : 5262
-             * checkedGoodsCount : 12
-             * checkedGoodsAmount : 4064
+             * goodsCount : 25
+             * goodsAmount : 5075
+             * checkedGoodsCount : 25
+             * checkedGoodsAmount : 5075
              */
 
             private int goodsCount;
@@ -111,20 +111,20 @@ public class AddCarBean {
 
         public static class CartListBean {
             /**
-             * id : 667
-             * user_id : 7
+             * id : 1014
+             * user_id : 5
              * session_id : 1
-             * goods_id : 1147048
-             * goods_sn : 1147048
-             * product_id : 228
-             * goods_name : 简约知性系列居家地毯 蓝灰格
-             * market_price : 559
-             * retail_price : 559
-             * number : 6
+             * goods_id : 1116033
+             * goods_sn : 1116033
+             * product_id : 171
+             * goods_name : 多功能人体工学转椅
+             * market_price : 1399
+             * retail_price : 1399
+             * number : 2
              * goods_specifition_name_value :
              * goods_specifition_ids :
              * checked : 1
-             * list_pic_url : http://yanxuan.nosdn.127.net/fd7920a2eadd10fa10c0c03959a2abe0.png
+             * list_pic_url : http://yanxuan.nosdn.127.net/f1dbf1d9967c478ee6def81ed40734a2.png
              */
 
             private int id;
